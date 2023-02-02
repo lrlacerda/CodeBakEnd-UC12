@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "CodeBackEndUc12/1.0.0": {
+        "runtime": {
+          "CodeBackEndUc12.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CodeBackEndUc12/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
