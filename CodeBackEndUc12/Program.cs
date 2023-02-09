@@ -3,6 +3,33 @@
 PessoaFisica novaPf = new PessoaFisica();
 Endereco novoEndPf = new Endereco();
 
+PessoaJuridica novoPj = new PessoaJuridica();
+Endereco novoEndPj = new Endereco();
+
+
+// Console.WriteLine(novoPj.ValidarCnpj("76773415000160"));
+// Console.WriteLine(novoPj.ValidarCnpj("76.773.415/0001-60"));
+
+
+novoPj.nome = " Empresa Lucas Lacerda ME";
+novoPj.cnpj = "76773415000160";
+novoPj.rendimento = 22600.5f;
+
+novoEndPf.logradouro = "Av. Doze de Outubro";
+novoEndPf.numero = 229;
+novoEndPf.complememto = "Lucas Informatica";
+novoEndPf.endComercial = false;
+
+novoPj.endereco = novoEndPf;
+
+// interpolação
+Console.WriteLine(@$"
+Nome: {novoPj.nome}
+Endereço: {novoEndPj.logradouro}, Num: {novoEndPj.numero}
+CNPJ: {novoPj.cnpj} - Valido: {novoPj.ValidarCnpj(novoPj.cnpj)}
+");
+
+
 novaPf.nome = "Lucas Lacerda";
 novaPf.cpf = "12345678902";
 novaPf.rendimento = 6600.5f;
@@ -37,7 +64,6 @@ Console.WriteLine(novaPj.CalcularImposto (6600.5f));
 
 DateTime temp = new DateTime(2006, 01, 01);
 Console.WriteLine(novaPf.ValidarDataNasc("17/01/1985"));
-
 
 
 
