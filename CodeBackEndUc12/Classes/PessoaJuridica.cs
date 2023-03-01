@@ -1,59 +1,56 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using CodeBackEndUc12.Interfaces;
+using Back_End_ER04.Interfaces;
 
-namespace CodeBackEndUc12.Classes
+namespace Back_End_ER04.Classes
 {
     public class PessoaJuridica : Pessoa, IPessoaJuridica
     {
+        public string? cnpj { get; set; }
+        public string? razaoSocial { get; set; }
 
-        public string? cnpj {get; set;}
-
-        public string? razaSocial {get; set;}
-
-        public override float CalcularImposto(float rendimentos)
+        public override float CalcularImposto(float rendimento)
         {
-             if (rendimento <= 3000)
+            if (rendimento <= 3000 )
+            {   
+               return rendimento * 0.03f;
+                
+            } else if (rendimento > 3000 && rendimento <= 6000 )
             {
-                float resultado = (float) rendimento * .03f;
-                return resultado;
+                return rendimento * 0.05f;
+
+            } else if (rendimento > 6000 && rendimento <= 10000 )
+            {
+                return rendimento * 0.07f;
+
+            } else 
+            {
+                return rendimento * 0.09f;
             } 
-            else if (rendimento > 3000 && rendimento <= 6000)
-            {
-                float resultado = (float) rendimento * .02f;
-                return resultado;
-            }
-            else if (rendimento > 6000 && rendimento <= 10000)
-            {
-                float resultado = (float) rendimento * 0.07f;
-                return resultado;
-            }
-            else
-            {
-                float resultado = (float) rendimento * 0.09f;
-                return resultado; 
-            }
         }
 
         public bool ValidarCnpj(string cnpj)
+
+            // 76773415000160 (14)
+            // 76.773.415/0001-60 (18)
+
         {
-            //Comparando através do Metodo Regex o valor informado do cnpj com o "padrão regex"
-            bool retornoCnpjValido = Regex.IsMatch(cnpj, @"^\(d{14}) | (\d{2}.\d{3}.\d{3}/\d{4}-\d{2}) $");
+            //Comparando através da Metodo Regex o valor info. do cnpj com o "padrão regex"
+            bool retornoCnpjValido = Regex.IsMatch(cnpj, @"^(\d{14})|(\d{2}.\d{3}.\d{3}/\d{4}-\d{2}) $");
 
             if (retornoCnpjValido)
             {
-                string subStringCnpj14 =  cnpj.Substring(8, 4);
+                string subStringCnpj14 = cnpj.Substring(8, 4);
 
                 if (subStringCnpj14 == "0001")
                 {
                     return true;
-                }
+                } else
+                
+                return false;
+    
             }
 
-            string subStringCnpj18 =  cnpj.Substring(11, 4);
+            string subStringCnpj18 = cnpj.Substring(11, 4);
 
                 if (subStringCnpj18 == "0001")
                 {

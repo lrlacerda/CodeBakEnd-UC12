@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CodeBackEndUc12.Interfaces
+namespace Back_End_ER04.Interfaces
 {
     public interface IPessoaJuridica
     {
-        bool ValidarCnpj(string cnpj);
+         bool ValidarCnpj (string cnpj);
     }
 }

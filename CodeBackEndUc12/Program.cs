@@ -1,104 +1,230 @@
-﻿using CodeBackEndUc12.Classes;
+﻿using Back_End_ER04.Classes;
+using Back_End_ER05.Classes;
+
+List<PessoaJuridica> listaPj = new List<PessoaJuridica>();
+
 
 string? opcao;
+string? opcaoPj;
 
 Utils.BarraCarregamento("Inicializando");
 Console.Clear();
 
 Console.WriteLine(@$"
-
-        =========================================================
-        |           Bem Vindo ao Sistema de Cadastro de         |
-        |                Pessoa Física e Juridíca               |
-        =========================================================
+            =================================================
+            |      Bem Vindo ao Sistema de Cadastro de      |
+            |            Pessoa Física e Juridíca           |
+            =================================================
 ");
 Thread.Sleep(2000);
+
+
 
 do
 {
     Console.Clear();
     Console.WriteLine(@$"
-
-        =========================================================
-        |                Digite uma das opção abaixo            |
-        |                e tecle Enter para continuar           |
-        =========================================================
-        |                                                       |
-        |                1- Pessoa Jurídica                     |
-        |                2-  Pessoa Física                      |
-        |                0-      Sair                           |
-        =========================================================
+            =================================================
+            |        Digite uma das opções abaixo           |
+            |        e tecle Enter para continuar           |
+            =================================================
+            |                                               |
+            |             1 - Pessoa Jurídica               |
+            |             2 - Pessoa Fisíca                 |
+            |                                               |
+            |             0 - Sair                          |
+            =================================================
 ");
 
     opcao = Console.ReadLine();
-    // Console.WriteLine($"Você digitou {opcao}");
-
+    //Console.WriteLine($"Você digitou: {opcao}");
 
     switch (opcao)
     {
         case "1":
 
-            PessoaJuridica novoPj = new PessoaJuridica();
-            Endereco novoEndPj = new Endereco();
+            do
+            {
 
-            // Console.WriteLine(novoPj.ValidarCnpj("76773415000160"));
-            // Console.WriteLine(novoPj.ValidarCnpj("76.773.415/0001-60"));
+                Console.Clear();
+                Console.WriteLine(@$"
+            =================================================
+            |   Digite o número de uma das opções abaixo:   |
+            =================================================
+            |                                               |
+            |        1 - Cadastrar Pessoa Jurídica          |
+            |        2 - Listar Pessoa Jurídica             |
+            |                                               |
+            |        0 - Voltar ao menu anterior            |
+            =================================================
+");
 
-            novoPj.nome = " Empresa Lucas Lacerda ME";
-            novoPj.cnpj = "76773415000160";
-            novoPj.rendimento = 22600.5f;
+                opcaoPj = Console.ReadLine();
 
-            novoEndPj.logradouro = "Av. Doze de Outubro";
-            novoEndPj.numero = 229;
-            novoEndPj.complememto = "Lucas Informatica";
-            novoEndPj.endComercial = false;
+                switch (opcaoPj)
+                {
+                    case "1":
 
-            novoPj.endereco = novoEndPj;
+                        PessoaJuridica novaPJ = new PessoaJuridica();
+                        Endereco novoEndPJ = new Endereco();
 
-            // interpolação
-            Console.WriteLine(@$"
-            Nome: {novoPj.nome}
-            Endereço: {novoEndPj.logradouro}, Num: {novoEndPj.numero}
-            CNPJ: {novoPj.cnpj} - Valido: {novoPj.ValidarCnpj(novoPj.cnpj)}
-            ");
+                        Console.Clear();
+                        Console.WriteLine($"Digite o nome da Razão Social");
+                        novaPJ.razaoSocial = Console.ReadLine();
 
-            // Console.WriteLine(novoPj.CalcularImposto(6600.5f));
+                        Console.WriteLine($"Digite o CNPJ da empresa");
+                        novaPJ.cnpj = Console.ReadLine();
 
-            Thread.Sleep(10000);
+                        Console.WriteLine($"Digite o rendimento da empresa");
+                        string? rendEntrada = Console.ReadLine();
+
+                        float.TryParse(rendEntrada, out float rendConvertido);
+                        novaPJ.rendimento = rendConvertido;
+
+                        //****************************************************
+
+                        Console.WriteLine($"Digite o nome da Rua.");
+                        novoEndPJ.logradouro = Console.ReadLine();
+
+                        Console.WriteLine($"Digite o numero do imóvel.");
+                        string? numEntrada = Console.ReadLine();
+                        int.TryParse(numEntrada, out int numConvertido);
+                        novoEndPJ.numero = numConvertido;
+
+                        novaPJ.endereco = novoEndPJ;
+                        listaPj.Add(novaPJ);
+
+                        Console.WriteLine($"Cadastro realizado com sucesso.");
+                        Console.WriteLine($"Pressione qualquer tecla para continuar");
+                        Console.ReadLine();
+
+                        //     novaPJ.nome = "Empresa Adriano Malagoli ME";
+                        //     novaPJ.cnpj = "76.773.415/0001-60";
+                        //     novaPJ.rendimento = 22600.5f;
+
+                        //     novaEndPJ.logradouro = "Rua Niteroi";
+                        //     novaEndPJ.numero = 180;
+                        //     novaEndPJ.complemento = "Adriano Informatica";
+                        //     novaEndPJ.endComercial = false;
+
+                        //     novaPJ.endereco = novaEndPJ;
+
+
+                        // Console.WriteLine($"comandos para cadastrar uma nova pessoa jurídica");
+                        //Thread.Sleep(2000);
+
+                        break;
+
+                    case "2":
+
+                        Console.Clear();
+
+                        if (listaPj.Count > 0)
+                        {
+                            foreach (PessoaJuridica cadaPj in listaPj)
+                        {
+
+                            Console.Clear();
+
+
+                            Console.WriteLine(@$"
+                        Nome da Razão Social: {cadaPj.razaoSocial}
+                        Endereço: {cadaPj.endereco.logradouro}, Num: {cadaPj.endereco.numero}
+                        CNPJ: {cadaPj.cnpj} - Valido: {cadaPj.ValidarCnpj(cadaPj.cnpj)}
+                        ");
+
+                            Console.WriteLine($"Pressione qualquer tecla para continuar");
+                            Console.ReadLine();
+                        }    
+                        } else
+                        {
+                            Console.WriteLine($"Não temos dados para exibir, listagem vazia.");
+                            Thread.Sleep(4000);
+                        }
+
+                        break;
+
+
+
+                    case "0":
+                        Console.WriteLine($"Volta ao menu anterior");
+
+                        break;
+
+                    default:
+                        Console.WriteLine($"Digite o valor correto!");
+                        Thread.Sleep(2000);
+
+                        break;
+                }
+
+            } while (opcaoPj != "0");
+
+
+            //     // DADOS DA PESSOA JURIDICA ************************************************************
+
+
+            //     //Console.WriteLine(novaPJ.ValidarCnpj("76773415000160"));
+            //     //Console.WriteLine(novaPJ.ValidarCnpj("76.773.415/0001-60"));
+
+            //     novaPJ.nome = "Empresa Adriano Malagoli ME";
+            //     novaPJ.cnpj = "76.773.415/0001-60";
+            //     novaPJ.rendimento = 22600.5f;
+
+            //     novaEndPJ.logradouro = "Rua Niteroi";
+            //     novaEndPJ.numero = 180;
+            //     novaEndPJ.complemento = "Adriano Informatica";
+            //     novaEndPJ.endComercial = false;
+
+            //     novaPJ.endereco = novaEndPJ;
+
+            //     //interpolação
+            //     Console.WriteLine(@$"
+            // Nome: {novaPJ.nome}
+            // Endereço: {novaEndPJ.logradouro}, Num: {novaEndPJ.numero}
+            // CNPJ: {novaPJ.cnpj} - Valido: {novaPJ.ValidarCnpj(novaPJ.cnpj)}
+            // ");
+
+            //     // Pessoa Juridica =========================================================================
+            //     //Console.WriteLine(novaPJ.CalcularImposto(6600.5f));
+            Thread.Sleep(2000);
             break;
 
         case "2":
+            //DADOS DA PESSOA FISICA ************************************************************
 
-            PessoaFisica novaPf = new PessoaFisica();
-            Endereco novoEndPf = new Endereco();
+            PessoaFisica novaPF = new PessoaFisica();
+            Endereco novoEndPF = new Endereco();
 
-            novaPf.nome = "Lucas Lacerda";
-            novaPf.cpf = "12345678902";
-            novaPf.rendimento = 6600.5f;
-            novaPf.dataNasc = new DateTime(2001, 01, 01);
+            novaPF.nome = "Adriano Malagoli";
+            novaPF.cpf = "2514521452";
+            novaPF.rendimento = 6600.5f;
+            novaPF.dataNasc = new DateTime(2001, 01, 01);
 
-            novoEndPf.logradouro = "Av. Doze de Outubro";
-            novoEndPf.numero = 229;
-            novoEndPf.complememto = "apto 21";
-            novoEndPf.endComercial = true;
+            novoEndPF.logradouro = "Rua Niteroi";
+            novoEndPF.numero = 180;
+            novoEndPF.complemento = "Senai Informatica";
+            novoEndPF.endComercial = true;
 
-            novaPf.endereco = novoEndPf;
+            novaPF.endereco = novoEndPF;
 
-            // interpolação
+            //interpolação
             Console.WriteLine(@$"
-            Nome: {novaPf.nome}
-            Endereço: {novoEndPf.logradouro}, Num: {novoEndPf.numero}
-            Maior de idade: {novaPf.ValidarDataNasc(novaPf.dataNasc)}
-            ");
+        Nome: {novaPF.nome}
+        Endereço: {novoEndPF.logradouro}, Num: {novoEndPF.numero}
+        Maior de idade: {novaPF.ValidarDataNasc(novaPF.dataNasc)}
+        ");
 
-            // float impostoPagar = novaPf.CalcularImposto(novaPf.rendimento);
-            // Console.WriteLine($"{impostoPagar: 0.00}");
-            // Console.WriteLine(impostoPagar.ToString("C"));
-            // DateTime temp = new DateTime(2006, 01, 01);
-            // Console.WriteLine(novaPf.ValidarDataNasc("17/01/1985"));
+            // Pessoa Fisica =======================================================================
+            //float impostaPagar = novaPF.CalcularImposto(novaPF.rendimento);
+            //Console.WriteLine($"{impostaPagar:0.00}");
+            //Console.WriteLine(impostaPagar.ToString("C"));
+            //DateTime temp = new DateTime(2006, 01, 01);
+            //Console.WriteLine(novaPF.ValidarDataNasc("2005/02/01"));
 
-            Console.WriteLine();
+
             Console.WriteLine($"Pressione qualquer tecla para continuar");
+            Console.ReadLine();
             break;
 
         case "0":
@@ -106,9 +232,13 @@ do
             Console.Clear();
             break;
 
+
         default:
             Console.WriteLine($"digite o valor correto");
             Thread.Sleep(2000);
             break;
     }
+
 } while (opcao != "0");
+
+

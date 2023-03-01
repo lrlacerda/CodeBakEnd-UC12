@@ -1,39 +1,35 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CodeBackEndUc12.Interfaces;
 
-namespace CodeBackEndUc12.Classes
+using Back_End_ER04.Interfaces;
+namespace Back_End_ER04.Classes
 {
-    public class PessoaFisica : Pessoa, IPessoaFisica
+    public class PessoaFisica : Pessoa , IPessoaFisica
     {
+        public string? cpf { get; set; }
 
-        public string? cpf {get; set;}
-
-        public DateTime dataNasc{get; set;}
+        public DateTime dataNasc { get; set; }
 
         public override float CalcularImposto(float rendimento)
         {
-            if (rendimento <= 1500)
+            if (rendimento <= 1500 )
             {
-                return 0;
-            } 
-            else if (rendimento > 1500 && rendimento <= 3500)
+               return 0;
+                
+            } else if (rendimento > 1500 && rendimento <= 3500 )
             {
                 float resultado = (rendimento / 100) * 2;
                 return resultado;
-            }
-            else if (rendimento > 3500 && rendimento <= 6000)
+
+            } else if (rendimento > 3500 && rendimento <= 6000 )
             {
                 float resultado = (rendimento / 100) * 3.5f;
-                return resultado;
-            }
-            else
+                return resultado; 
+
+            } else 
             {
                 float resultado = (rendimento / 100) * 5;
                 return resultado;
-            }
+            } 
+
         }
 
         public bool ValidarDataNasc(DateTime dataNasc)
@@ -43,44 +39,36 @@ namespace CodeBackEndUc12.Classes
 
             double anos = (dataAtual - dataNasc).TotalDays / 365;
 
-            Console.WriteLine(anos);
+            //Console.WriteLine(anos);
 
             if (anos >= 18)
             {
                 return true;
-            }
+            } 
 
             return false;
 
         }
 
-        public bool ValidarDataNasc(string dataNasc)
+                public bool ValidarDataNasc(string dataNasc)
         {
-           if (DateTime.TryParse(dataNasc, out DateTime dataConvertida))
-
+            if (DateTime.TryParse(dataNasc, out DateTime dataConvertida))
             {
             DateTime dataAtual = DateTime.Today;
 
             double anos = (dataAtual - dataConvertida).TotalDays / 365;
 
-            Console.WriteLine(anos);
+            //Console.WriteLine(anos);
 
             if (anos >= 18)
             {
                 return true;
-            }
+            } 
+
                 return false;
             }
 
-                return false;
-
+            return false;
         }
-
-
-
-        // internal float CalcularImposto(float? rendimento)
-        // {
-        //     throw new NotImplementedException();
-        // }
     }
 }
