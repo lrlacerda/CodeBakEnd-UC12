@@ -98,13 +98,13 @@ do
                         Console.WriteLine($"Pressione qualquer tecla para continuar");
                         Console.ReadLine();
 
-                        //     novaPJ.nome = "Empresa Adriano Malagoli ME";
+                        //     novaPJ.nome = "Empresa Lucas Lacerda ME";
                         //     novaPJ.cnpj = "76.773.415/0001-60";
                         //     novaPJ.rendimento = 22600.5f;
 
-                        //     novaEndPJ.logradouro = "Rua Niteroi";
-                        //     novaEndPJ.numero = 180;
-                        //     novaEndPJ.complemento = "Adriano Informatica";
+                        //     novaEndPJ.logradouro = "AV. Doze de Outubro";
+                        //     novaEndPJ.numero = 200;
+                        //     novaEndPJ.complemento = "Lucas Lacerda Informatica";
                         //     novaEndPJ.endComercial = false;
 
                         //     novaPJ.endereco = novaEndPJ;
@@ -167,13 +167,13 @@ do
             //     //Console.WriteLine(novaPJ.ValidarCnpj("76773415000160"));
             //     //Console.WriteLine(novaPJ.ValidarCnpj("76.773.415/0001-60"));
 
-            //     novaPJ.nome = "Empresa Adriano Malagoli ME";
+            //     novaPJ.nome = "Empresa Lucas Lacerda ME";
             //     novaPJ.cnpj = "76.773.415/0001-60";
             //     novaPJ.rendimento = 22600.5f;
 
-            //     novaEndPJ.logradouro = "Rua Niteroi";
-            //     novaEndPJ.numero = 180;
-            //     novaEndPJ.complemento = "Adriano Informatica";
+            //     novaEndPJ.logradouro = "Av. Doze de Outubro";
+            //     novaEndPJ.numero = 200;
+            //     novaEndPJ.complemento = "Lucas Lacerda Informatica";
             //     novaEndPJ.endComercial = false;
 
             //     novaPJ.endereco = novaEndPJ;
@@ -196,14 +196,14 @@ do
             PessoaFisica novaPF = new PessoaFisica();
             Endereco novoEndPF = new Endereco();
 
-            novaPF.nome = "Adriano Malagoli";
+            novaPF.nome = "Lucas Lacerda";
             novaPF.cpf = "2514521452";
             novaPF.rendimento = 6600.5f;
             novaPF.dataNasc = new DateTime(2001, 01, 01);
 
-            novoEndPF.logradouro = "Rua Niteroi";
-            novoEndPF.numero = 180;
-            novoEndPF.complemento = "Senai Informatica";
+            novoEndPF.logradouro = "Av. Doze de Outubro";
+            novoEndPF.numero = 200;
+            novoEndPF.complemento = "Lucas Lacerda Informatica";
             novoEndPF.endComercial = true;
 
             novaPF.endereco = novoEndPF;
