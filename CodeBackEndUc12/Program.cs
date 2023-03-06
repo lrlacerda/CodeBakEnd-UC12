@@ -13,7 +13,7 @@ Console.Clear();
 Console.WriteLine(@$"
             =================================================
             |      Bem Vindo ao Sistema de Cadastro de      |
-            |            Pessoa Física e Juridíca           |
+            |            Pessoa Física e Jurídica           |
             =================================================
 ");
 Thread.Sleep(2000);
@@ -30,7 +30,7 @@ do
             =================================================
             |                                               |
             |             1 - Pessoa Jurídica               |
-            |             2 - Pessoa Fisíca                 |
+            |             2 - Pessoa Física                 |
             |                                               |
             |             0 - Sair                          |
             =================================================
@@ -69,78 +69,125 @@ do
                         Endereco novoEndPJ = new Endereco();
 
                         Console.Clear();
-                        Console.WriteLine($"Digite o nome da Razão Social");
-                        novaPJ.razaoSocial = Console.ReadLine();
+                        // Console.WriteLine($"Digite o nome da Razão Social");
+                        // novaPJ.razaoSocial = Console.ReadLine();
 
-                        Console.WriteLine($"Digite o CNPJ da empresa");
-                        novaPJ.cnpj = Console.ReadLine();
+                        //StreamWriter sw = new StreamWriter($"{novaPJ.razaoSocial}.txt");
+                        //sw.WriteLine(novaPJ.razaoSocial);
+                        //sw.Close();
 
-                        Console.WriteLine($"Digite o rendimento da empresa");
-                        string? rendEntrada = Console.ReadLine();
+                        // using (StreamWriter sw = new StreamWriter($"{novaPJ.razaoSocial}.txt"))
+                        // {
+                        //     sw.WriteLine(novaPJ.razaoSocial);
+                        // }
 
-                        float.TryParse(rendEntrada, out float rendConvertido);
-                        novaPJ.rendimento = rendConvertido;
 
-                        //****************************************************
+                        // Console.WriteLine($"Digite o CNPJ da empresa");
+                        // novaPJ.cnpj = Console.ReadLine();
 
-                        Console.WriteLine($"Digite o nome da Rua.");
-                        novoEndPJ.logradouro = Console.ReadLine();
+                        // Console.WriteLine($"Digite o rendimento da empresa");
+                        // string? rendEntrada = Console.ReadLine();
 
-                        Console.WriteLine($"Digite o numero do imóvel.");
-                        string? numEntrada = Console.ReadLine();
-                        int.TryParse(numEntrada, out int numConvertido);
-                        novoEndPJ.numero = numConvertido;
+                        // float.TryParse(rendEntrada, out float rendConvertido);
+                        // novaPJ.rendimento = rendConvertido;
 
-                        novaPJ.endereco = novoEndPJ;
-                        listaPj.Add(novaPJ);
+                        // //****************************************************
 
-                        Console.WriteLine($"Cadastro realizado com sucesso.");
-                        Console.WriteLine($"Pressione qualquer tecla para continuar");
-                        Console.ReadLine();
+                        // Console.WriteLine($"Digite o nome da Rua.");
+                        // novoEndPJ.logradouro = Console.ReadLine();
 
-                        //     novaPJ.nome = "Empresa Lucas Lacerda ME";
-                        //     novaPJ.cnpj = "76.773.415/0001-60";
-                        //     novaPJ.rendimento = 22600.5f;
+                        // Console.WriteLine($"Digite o numero do imóvel.");
+                        // string? numEntrada = Console.ReadLine();
+                        // int.TryParse(numEntrada, out int numConvertido);
+                        // novoEndPJ.numero = numConvertido;
 
-                        //     novaEndPJ.logradouro = "AV. Doze de Outubro";
-                        //     novaEndPJ.numero = 200;
-                        //     novaEndPJ.complemento = "Lucas Lacerda Informatica";
-                        //     novaEndPJ.endComercial = false;
+                        // novaPJ.endereco = novoEndPJ;
+                        // listaPj.Add(novaPJ);
 
-                        //     novaPJ.endereco = novaEndPJ;
+                        // Console.WriteLine($"Cadastro realizado com sucesso.");
+                        // Console.WriteLine($"Pressione qualquer tecla para continuar");
+                        // Console.ReadLine();
+
+                            novaPJ.razaoSocial = "Empresa Senai ME";
+                            novaPJ.cnpj = "22.777.444/0001-02";
+
+                            novaPJ.Inserir(novaPJ);
+
+                        //novaPJ.rendimento = 22600.5f;
+
+                        // novaEndPJ.logradouro = "Av. Doze de Outubro";
+                        // novaEndPJ.numero = 229;
+                        // novaEndPJ.complemento = "Lucas Lacerda Informatica";
+                        // novaEndPJ.endComercial = false;
+
+                        //novaPJ.endereco = novaEndPJ;
 
 
                         // Console.WriteLine($"comandos para cadastrar uma nova pessoa jurídica");
                         //Thread.Sleep(2000);
-
+                        Console.WriteLine($"Cadastro ok/Arquivo Criado");
+                        Console.ReadLine();
+                        
                         break;
 
                     case "2":
 
                         Console.Clear();
 
-                        if (listaPj.Count > 0)
+                        // using (StreamReader sr = new StreamReader("Fiesp-Me.txt"))
+                        // {
+                        //     string? linha;
+                        //     while ((linha = sr.ReadLine()) != null)
+                        //     {
+                        //         //linha = sr.ReadLine();
+                        //         Console.WriteLine($"{linha}");
+                        //     }
+                        //}
+                        PessoaJuridica novaPJ2 = new PessoaJuridica();
+                        List<PessoaJuridica> listaExibicaoPj = novaPJ2.LerArquivo();
+
+
+                        foreach (var cadaItem in listaExibicaoPj)
                         {
-                            foreach (PessoaJuridica cadaPj in listaPj)
-                        {
-
-                            Console.Clear();
-
-
+                            
                             Console.WriteLine(@$"
-                        Nome da Razão Social: {cadaPj.razaoSocial}
-                        Endereço: {cadaPj.endereco.logradouro}, Num: {cadaPj.endereco.numero}
-                        CNPJ: {cadaPj.cnpj} - Valido: {cadaPj.ValidarCnpj(cadaPj.cnpj)}
-                        ");
+                            
+                            Razão Social: {cadaItem.razaoSocial}
+                            CNPJ: {cadaItem.cnpj}
 
-                            Console.WriteLine($"Pressione qualquer tecla para continuar");
-                            Console.ReadLine();
-                        }    
-                        } else
-                        {
-                            Console.WriteLine($"Não temos dados para exibir, listagem vazia.");
-                            Thread.Sleep(4000);
+                            ");
+                            Console.WriteLine($"Linha ok, Enter para Continuar");
+                            Console.ReadLine(); 
+                            Console.Clear(); 
                         }
+
+                            Console.WriteLine($"Leitura Total Completa");
+                            Console.ReadLine();  
+                            Console.Clear(); 
+ 
+
+                        // if (listaPj.Count > 0)
+                        // {
+                        //     foreach (PessoaJuridica cadaPj in listaPj)
+                        // {
+
+                        //     Console.Clear();
+
+
+                        //     Console.WriteLine(@$"
+                        // Nome da Razão Social: {cadaPj.razaoSocial}
+                        // Endereço: {cadaPj.endereco.logradouro}, Num: {cadaPj.endereco.numero}
+                        // CNPJ: {cadaPj.cnpj} - Valido: {cadaPj.ValidarCnpj(cadaPj.cnpj)}
+                        // ");
+
+                        //     Console.WriteLine($"Pressione qualquer tecla para continuar");
+                        //     Console.ReadLine();
+                        // }    
+                        // } else
+                        // {
+                        //     Console.WriteLine($"Não temos dados para exibir, listagem vazia.");
+                        //     Thread.Sleep(4000);
+                        // }
 
                         break;
 
@@ -172,7 +219,7 @@ do
             //     novaPJ.rendimento = 22600.5f;
 
             //     novaEndPJ.logradouro = "Av. Doze de Outubro";
-            //     novaEndPJ.numero = 200;
+            //     novaEndPJ.numero = 229;
             //     novaEndPJ.complemento = "Lucas Lacerda Informatica";
             //     novaEndPJ.endComercial = false;
 
@@ -202,8 +249,8 @@ do
             novaPF.dataNasc = new DateTime(2001, 01, 01);
 
             novoEndPF.logradouro = "Av. Doze de Outubro";
-            novoEndPF.numero = 200;
-            novoEndPF.complemento = "Lucas Lacerda Informatica";
+            novoEndPF.numero = 229;
+            novoEndPF.complemento = "Senai Informatica";
             novoEndPF.endComercial = true;
 
             novaPF.endereco = novoEndPF;
@@ -242,3 +289,4 @@ do
 } while (opcao != "0");
 
 
+//********************************************************

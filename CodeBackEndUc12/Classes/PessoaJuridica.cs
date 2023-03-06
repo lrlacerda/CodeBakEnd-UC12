@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Back_End_ER04.Interfaces;
+using Back_End_ER05.Classes;
 
 namespace Back_End_ER04.Classes
 {
@@ -7,6 +8,8 @@ namespace Back_End_ER04.Classes
     {
         public string? cnpj { get; set; }
         public string? razaoSocial { get; set; }
+
+        public string? Caminho {get; private set;} = "Database/PessoaJurica.csv";
 
         public override float CalcularImposto(float rendimento)
         {
@@ -59,5 +62,41 @@ namespace Back_End_ER04.Classes
 
         return false;
         }
+
+        public void Inserir(PessoaJuridica pj){
+            
+            Utils.VerificarPastaArquivo(Caminho);
+
+            string [] pjstring = {$"{pj.razaoSocial},{pj.cnpj}"};
+
+            File.AppendAllLines(Caminho, pjstring);
+        }
+
+        public List<PessoaJuridica> LerArquivo()
+        {
+            //razao social, cnpj
+            List<PessoaJuridica> listaPj = new List<PessoaJuridica>();
+            
+            string [] linhas = File.ReadAllLines(Caminho);
+
+            foreach (string cadaLinha in linhas)
+            {
+                string [] atributos = cadaLinha.Split(",");
+
+                PessoaJuridica cadaPj = new PessoaJuridica();
+
+                cadaPj.razaoSocial = atributos[0];
+                cadaPj.cnpj = atributos[1];
+                
+                listaPj.Add(cadaPj);
+
+            }
+
+            return listaPj;
+        }
+
+
+
+
     }
 }
